@@ -1,0 +1,12 @@
+<script src="{{asset('news_template/js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('news_template/css/bootstrap-4.1.2/popper.js')}}"></script>
+<script src="{{asset('news_template/css/bootstrap-4.1.2/bootstrap.min.js')}}"></script>
+<script src="{{asset('news_template/js/greensock/TweenMax.min.js')}}"></script>
+<script src="{{asset('news_template/js/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{asset('news_template/js/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{asset('news_template/js/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{asset('news_template/js/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{asset('news_template/js/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{asset('news_template/js/easing/easing.js')}}"></script>
+<script src="{{asset('news_template/js/parallax-js-master/parallax.min.js')}}"></script>
+<script src="{{asset('news_template/js/custom.js')}}"></script>
