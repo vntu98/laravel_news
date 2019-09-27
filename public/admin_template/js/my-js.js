@@ -106,7 +106,7 @@ $(document).ready(function() {
         })
     })
 
-    $(document).on('click', 'select[name = select_change_attr]', function(e){
+    $(document).on('change', 'select[name = select_change_attr]', function(e){
         e.preventDefault();
         let value = $(this).val();
         let id = $(this).data('id');

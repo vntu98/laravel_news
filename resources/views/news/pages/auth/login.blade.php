@@ -3,9 +3,7 @@
     @php
         use App\Helpers\Form as FormTemplate;   
     @endphp
-    <div style="height: 200px">
-    </div>
-    <div class="card fat">
+    <div class="card fat" style="margin-top: 30%;">
         <div class="card-body">
             <h4 class="card-title">Đăng nhập</h4>
             @include('news.templates.error')
