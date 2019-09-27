@@ -12,6 +12,12 @@
             'form_input' => [
                 'class' => 'form-control col-md-6 col-xs-12'
             ],
+            'form_label_edit' => [
+                'class' => 'control-label col-md-4 col-sm-3 col-xs-12'
+            ],
+            'form_ckeditor' => [
+                'class' => 'form-control col-md-6 col-xs-12 ckeditor'
+            ],
             'form_label' => [
                 'class' => 'control-label col-md-3 col-sm-3 col-xs-12'
             ],
@@ -29,6 +35,14 @@
             'display' => [
                 'list'      => ['name' => 'Danh sách'],
                 'grid'   => ['name' => 'Lưới'],
+            ],
+            'type' => [
+                'featured'      => ['name' => 'Nổi bật'],
+                'normal'   => ['name' => 'Bình thường'],
+            ],
+            'level' => [
+                'admin'      => ['name' => 'Quản trị hệ thống'],
+                'member'   => ['name' => 'Người dùng bình thường'],
             ],
             'search' => [
                 'all'   => ['name' => 'Search by All'],
@@ -55,12 +69,16 @@
             'search' => [
                 'default' => ['all', 'id', 'description'],
                 'slider' => ['all', 'id', 'name', 'description', 'link'],
-                'category' => ['all', 'id', 'name']
+                'category' => ['all', 'id', 'name'],
+                'article' => ['all', 'name', 'content'],
+                'user' => ['all', 'username', 'email', 'fullname']
             ],
             'button' => [
                 'default' => ['edit', 'delete'],
                 'slider' => ['edit', 'delete'],
-                'category' => ['edit', 'delete']
+                'category' => ['edit', 'delete'],
+                'article' => ['edit', 'delete'],
+                'user' => ['edit'],
             ]
         ]
     ];

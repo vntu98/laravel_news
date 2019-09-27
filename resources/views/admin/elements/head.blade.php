@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="icon" href="{{asset('admin_template/img/favicon.ico')}}" type="image/ico"/>
 <title>Admin | Index</title>
 <!-- Bootstrap -->
@@ -16,7 +17,7 @@
 <!-- bootstrap-progressbar -->
 <link href="{{asset('admin_template/asset/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet">
 <!-- Custom Theme Style -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" href="{{asset('admin_template/css/toastr.min.css')}}">
 <link href="{{asset('admin_template/css/custom.min.css')}}" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="{{asset('admin_template/css/mycss.css')}}" rel="stylesheet">

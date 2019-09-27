@@ -70,7 +70,7 @@ class SliderModel extends AdminModel
         if($options['task'] == "add-item"){
             $params['thumb'] = $this->uploadThumb($params['thumb']);
             $params['created'] = date('Y-m-d');
-            $params['created_by'] = 'Vu Tu';
+            $params['created_by'] = (session('userInfo')) ? session('userInfo')['fullname'] : 'admin';
             self::insert($this->prepareParams($params));
         }
         if($options['task'] == "edit-item"){
@@ -79,7 +79,7 @@ class SliderModel extends AdminModel
                 $params['thumb'] = $this->uploadThumb($params['thumb']);
             }
             $params['modified'] = date('Y-m-d');
-            $params['modified_by'] = 'Vu Tu';
+            $params['modified_by'] = (session('userInfo')) ? session('userInfo')['fullname'] : 'admin';
             self::where('id', $params['id'])->update($this->prepareParams($params));
         }
     }
@@ -94,6 +94,9 @@ class SliderModel extends AdminModel
         $result = null;
         if($options['task'] == "get-item"){
             $result = self::select('id', 'name', 'description', 'status', 'link', 'thumb')->where('id', $params["id"])->first()->toArray();
+        }
+        if($options['task'] == "get-current-status"){
+            $result = self::select('status')->where('id', $params["id"])->first()->toArray();
         }
         return $result;
     }

@@ -1,5 +1,6 @@
 @php
     use App\Models\CategoryModel as CategoryModel;
+    use App\Helpers\URL;
     $categoryModel = new CategoryModel;
     $itemsCategory = $categoryModel->listItems(null, ['task' => 'news-list-items']);
     $xhtmlMenu = '';
@@ -7,12 +8,19 @@
     if(count($itemsCategory) > 0){
         $xhtmlMenu = '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
         $xhtmlMenuMobile = '<nav class="menu_nav"><ul class="menu_mm">';
+        $categoryIdCurrent = Route::input('category_id');
         foreach($itemsCategory as $key => $val){
-            $xhtmlMenu .= sprintf('<li><a href="#">%s</a></li>', $val['name']);
+            $link = URL::linkCategory($val['id'], $val['name']);
+            $classActive = ($categoryIdCurrent == $val['id']) ? 'class="active"' : '';
+            $xhtmlMenu .= sprintf('<li %s><a href="%s">%s</a></li>', $classActive, $link, $val['name']);
             $xhtmlMenuMobile .= sprintf('<li class="menu_mm"><a href="#">%s</a></li>', $val['name']);
         }
-        $xhtmlMenu .= '</ul></nav>';
-        $xhtmlMenuMobile .= '</ul></nav>';
+        if(session('userInfo'))
+            $xhtmlMenuUser = sprintf('<li><a href="%s">%s</a></li>', route('auth/logout'), 'Đăng xuất');
+        else
+            $xhtmlMenuUser = sprintf('<li><a href="%s">%s</a></li>', route('auth/login'), 'Đăng nhập');
+        $xhtmlMenu .=  $xhtmlMenuUser . '</ul></nav>';
+        $xhtmlMenuMobile .= $xhtmlMenuUser . '</ul></nav>';
     }
 @endphp
 <header class="header">
@@ -23,7 +31,7 @@
                 <div class="col">
                     <div class="header_content d-flex flex-row align-items-center justfy-content-start">
                         <div class="logo_container">
-                            <a href="#">
+                            <a href="{{route('home')}}">
                                 <div class="logo"><span>NEW</span>s</div>
                             </a>
                         </div>

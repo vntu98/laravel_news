@@ -1,4 +1,4 @@
-@extends('news.main')
+@extends('news.main', ['title' => 'Trang chủ'])
 @section('content')
     @include('news.block.slider')
     <div class="content_container">
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <!-- Featured Title -->
-                            @include('news.block.featured', ['itemFeature' => []])
+                            @include('news.block.featured', ['items' => $itemsFeatured])
                         </div>
                         <!-- Category -->
                         @include('news.pages.home.child-index.category')
@@ -34,7 +34,7 @@
                 <div class="col-lg-3">
                     <div class="sidebar">
                         <!-- Latest Posts -->
-                        @include('news.block.latest_posts', ['itemsLatest' => []])
+                        @include('news.block.latest_posts', ['items' => $itemsLatest])
                         <!-- Extra -->
                         @include('news.block.advertisement', ['itemsAdvertisement' => []])
                         <!-- Most Viewed -->

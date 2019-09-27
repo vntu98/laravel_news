@@ -25,10 +25,10 @@ class SliderRequest extends FormRequest
     public function rules()
     {
         $id = $this->id;
-        $conditionThumb = 'bail|required|image|max:100';
+        $conditionThumb = 'bail|required|image|max:500';
         $condName = "required|between:5,100|unique:$this->table,name";
         if(!empty($id)){ // edit
-            $conditionThumb = 'bail|image|max:100';
+            $conditionThumb = 'bail|image|max:500';
             $condName .= ",$id";
         }
         return [
@@ -43,7 +43,7 @@ class SliderRequest extends FormRequest
     {
         return [
             'name.required' => 'Name không được rỗng!',
-            'name.between' => 'Name :input chiều dài phải có ít nhất :min kí tự và nhiều nhất 100 kí tự!',
+            'name.between' => 'Name :input chiều dài phải có ít nhất :min kí tự và nhiều nhất :max kí tự!',
             'name.unique' => 'Name :input đã tồn tại!',
             'description.required'  => 'Description không được rỗng!',
             'link.required'  => 'Link không được rỗng!',

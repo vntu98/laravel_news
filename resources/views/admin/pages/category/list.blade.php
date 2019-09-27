@@ -26,13 +26,13 @@
                             $name = HighLight::show($val['name'], $params['search'], 'name');
                             $status = Template::showItemStatus($controllerName, $val->status, $val->id);
                             $isHome = Template::showItemIsHome($controllerName, $val->is_home, $val->id);
-                            $display = Template::showItemSelect($controllerName, $val->display, $val->id);
+                            $display = Template::showItemSelect($controllerName, $val->display, $val->id, 'display');
                             $createHistory = Template::showItemHistory($val->created_by, $val->created);
                             $modifiedHistory = Template::showItemHistory($val->modified_by, $val->modified);
-                            $listBtnAction = Template::showButtonAction($controllerName, $val->id);
+                            $listBtnAction = Template::showButtonAction($controllerName, $val->id, $index);
                         @endphp
-                        <tr class="{{ $class }} pointer">
-                            <td class="">{{ $index }}</td>
+                        <tr class="{{ $class }} pointer" id="div-{{$val['id']}}">
+                            <td class="index" data-index="{{ $index }}">{{ $index }}</td>
                             <td width="20%">
                                 <p><strong>Name:</strong> {!! $name !!}</p>
                             </td>

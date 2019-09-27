@@ -1,6 +1,8 @@
 @php
     use App\Helpers\Template;
     $xhtmlButtonFilter = Template::showButtonFilter($params['filter']['status'], $controllerName, $itemsStatusCount, $params['search']);
+    $xhtmlButtonFilterIsHome = Template::showButtonFilterIsHome($params['filter']['isHome'], $controllerName, $itemsIsHomeCount, $params['search']);
+    $xhtmlButtonFilterDisplay = Template::showButtonFilterDisplay($params['filter']['display'], $controllerName, $itemsDisplayCount, $params['search']);
     $xhtmlAreaSearch = Template::showAreaSearch($controllerName, $params['search']);
 @endphp
 @extends('admin.main')
@@ -15,6 +17,9 @@
                 <div class="row">
                     <div class="col-md-6"> {!! $xhtmlButtonFilter !!} </div>
                     <div class="col-md-6"> {!! $xhtmlAreaSearch !!} </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"> {!! $xhtmlButtonFilterIsHome !!} &nbsp; {!! $xhtmlButtonFilterDisplay !!} </div>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="sidebar_title">Quảng cáo</div>
         <div class="sidebar_extra_container">
             <div class="background_image"
-                style="background-image:url(news_template/images/extra_1.jpg)"></div>
+                style="background-image:url({{asset('news_template/images/extra_1.jpg')}})"></div>
             <div class="sidebar_extra_content">
                 <div class="sidebar_extra_title">30%</div>
                 <div class="sidebar_extra_title">off</div>

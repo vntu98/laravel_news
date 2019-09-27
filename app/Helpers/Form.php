@@ -22,6 +22,12 @@ class Form{
             case 'thumb': 
                 $xhtml = sprintf('<div class="form-group"> %s <div class="col-md-6 col-sm-6 col-xs-12"> %s <p style="margin-top: 50px;">%s</p></div></div>', $element['label'], $element['element'], $element['thumb']);
                 break;
+            case 'avatar': 
+                $xhtml = sprintf('<div class="form-group"> %s <div class="col-md-6 col-sm-6 col-xs-12"> %s <p style="margin-top: 50px;">%s</p></div></div>', $element['label'], $element['element'], $element['avatar']);
+                break;
+            case 'btn-submit-edit': 
+                $xhtml = sprintf('<div class="ln_solid"></div><div class="form-group"><div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">%s</div></div>', $element['element']);
+                break;
         }
         return $xhtml;
     }

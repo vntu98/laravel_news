@@ -28,10 +28,10 @@
                             $status = Template::showItemStatus($controllerName, $val->status, $val->id);
                             $createHistory = Template::showItemHistory($val->created_by, $val->created);
                             $modifiedHistory = Template::showItemHistory($val->modified_by, $val->modified);
-                            $listBtnAction = Template::showButtonAction($controllerName, $val->id);
+                            $listBtnAction = Template::showButtonAction($controllerName, $val->id, $index);
                         @endphp
-                        <tr class="{{ $class }} pointer">
-                            <td class="">{{ $index }}</td>
+                        <tr class="{{ $class }} pointer" id="div-{{$val['id']}}">
+                            <td class="index" data-index="{{ $index }}">{{ $index }}</td>
                             <td width="40%">
                                 <p><strong>Name:</strong> {!! $name !!}</p>
                                 <p><strong>Description:</strong> {!! $description !!}</p>

@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SliderModel as MainModel;
-use App\Http\Requests\SliderRequest as MainRequest;
+use App\Models\ArticleModel as MainModel;
+use App\Models\CategoryModel;
+use App\Http\Requests\ArticleRequest as MainRequest;
+use Config;
 
-class SliderController extends Controller
+class ArticleController extends Controller
 {
-    private $pathViewController = 'admin.pages.slider.';
-    private $controllerName = 'slider';
+    private $pathViewController = 'admin.pages.article.';
+    private $controllerName = 'article';
     private $params = [];
     private $model;
     public function __construct(){
@@ -35,8 +38,11 @@ class SliderController extends Controller
             $params['id'] = $request->id;
             $item = $this->model->getItem($params, ['task' => 'get-item']);
         }
+        $categoryModel = new CategoryModel();
+        $itemsCategory= $categoryModel->listItems(null, ['task' => 'admin-list-items-in-selectbox']);
         return view($this->pathViewController . 'form', [
-            'item' => $item
+            'item' => $item,
+            'itemsCategory' => $itemsCategory
         ]);
     }
 
@@ -57,14 +63,31 @@ class SliderController extends Controller
     public function delete(Request $request){
         $params['id'] = $request->id;
         $this->model->deleteItem($params, ['task' => 'delete-item']);
-        return redirect()->route($this->controllerName);
+        return response()->json([
+            'message' => "Xóa thành công!"
+        ]);
     }
 
     public function status(Request $request){
-        $params['currentStatus'] = $request->status;
         $params['id'] = $request->id;
+        $params['currentStatus'] =  $this->model->getItem($params, ['task' => 'get-current-status'])['status'];
+        $tmplStatus = Config::get('zvn.template.status');
+        $changeStatus = ($params['currentStatus'] == 'active') ? 'inactive' : 'active';
         $this->model->saveItem($params, ['task' => 'change-status']);
-        return redirect()->route($this->controllerName)->with('zvn_notify', 'Cập nhật trạng thái thành công!');
+        return response()->json([
+            'message' => 'Cập nhật trạng thái thành công!',
+            'status' => $tmplStatus[$changeStatus],
+            'value' => $changeStatus
+        ]);
+    }
+
+    public function type(Request $request){
+        $params['currentType'] = $request->type;
+        $params['id'] = $request->id;
+        $this->model->saveItem($params, ['task' => 'change-type']);
+        return response()->json([
+            'message' => 'Cập nhật kiểu hiển thị thành công!',
+        ]);
     }
 
 }

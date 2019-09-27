@@ -10,8 +10,10 @@
 <script src="{{asset('admin_template/asset/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
 <!-- iCheck -->
 <script src="{{asset('admin_template/asset/iCheck/icheck.min.js')}}"></script>
+<!-- ckeditor -->
+<script src="{{asset('admin_template/js/ckeditor/ckeditor.js')}}"></script>
 <!-- Custom Theme Scripts -->
 <script src="{{asset('admin_template/js/custom.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="{{asset('admin_template/js/toastr.min.js')}}"></script>
+<script src="{{asset('admin_template/js/sweetalert.min.js')}}"></script>
 <script src="{{asset('admin_template/js/my-js.js')}}"></script>

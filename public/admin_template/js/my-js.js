@@ -3,7 +3,6 @@ $(document).ready(function() {
 	let $btnClearSearch	  = $("button#btn-clear");
 	let $inputSearchField = $("input[name  = search_field]");
     let $inputSearchValue = $("input[name  = search_value]");
-    let $selectChangeAttr = $('select[name = select_change_attr]');
     $("a.select-field").click(function(e) {
 		e.preventDefault();
 		let field 		= $(this).data('field');
@@ -13,7 +12,7 @@ $(document).ready(function() {
     });
     $btnSearch.click(function() {
         var pathname	= window.location.pathname;
-        let params = ['filter_status'];
+        let params = ['filter_status', 'filter_isHome', 'filter_display'];
         let searchParams = new URLSearchParams(window.location.search);
         let link = "";
         $.each(params, function(key, param){
@@ -42,7 +41,9 @@ $(document).ready(function() {
         $('div#alert').fadeOut('slow');
     }, 1000);
     $(document).on('click', '.btn-delete', function(){
-		let link = $(this).data('link');
+        let id = $(this).data('id');
+        let link = $(this).data('link');
+        let index = $(this).data('index');
         swal({
 			title: "Bạn có muốn xóa không?",
 			text: "Nếu xóa, bạn sẽ không thể khôi phục lại!",
@@ -52,19 +53,96 @@ $(document).ready(function() {
 		})
 		.then((willDelete) => {
 			if (willDelete) {
-			  	swal("Xóa thành công!", {
-					icon: "success",
-				}).then((willDelete) => {
-                    window.location.href = link;
-                });
+                $.ajax({
+                    type: 'get',
+                    url: link,
+                    data:{
+        
+                    },
+                    success: function(response){
+                        if(response.message !== undefined){
+                            $('.index').each(function(){
+                                if($(this).data('index') > index) {
+                                    $(this).html($(this).data('index') - 1);
+                                    $(this).data('index', $(this).data('index') - 1);
+                                }
+                            })
+                            $('#div-' + id).remove();
+                            swal("Xóa thành công!", {
+                                	icon: "success",
+                                });
+                        }
+                    }
+                })
 			} else {
 			  	swal("Xóa không thành công!");
 			}
 		});
     })
-    $selectChangeAttr.on('change', function(){
-        let selectValue = $(this).val();
-        let url = $(this).data('url');
-        window.location.href = url.replace('value_new', selectValue);
+
+    $.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+    $(document).on('click', '.status', function(e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        let controllerName = $(this).data('controller');
+        $.ajax({
+            type: 'get',
+            url: controllerName + "/change-status/" + id,
+            data:{
+
+            },
+            success: function(response){
+                if(response.message !== undefined){
+                    toastr.success(response.message);
+                    $('#status-' + id).html(response.status.name);
+                    $('#status-' + id).attr('class', 'btn btn-round status ' + response.status.class);
+                }
+            }
+        })
+    })
+
+    $(document).on('click', 'select[name = select_change_attr]', function(e){
+        e.preventDefault();
+        let value = $(this).val();
+        let id = $(this).data('id');
+        let controllerName = $(this).data('controller');
+        let fieldName = $(this).data('field');
+        $.ajax({
+            type: 'get',
+            url: controllerName + "/change-" + fieldName + "-" + value + "/" + id,
+            data:{
+
+            },
+            success: function(response){
+                if(response.message !== undefined){
+                    toastr.success(response.message);
+                }
+            }
+        })
+    })
+
+    $(document).on('click', '.ishome', function(e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        let controllerName = $(this).data('controller');
+        $.ajax({
+            type: 'get',
+            url: controllerName + "/change-is-home/" + id,
+            data:{
+
+            },
+            success: function(response){
+                if(response.message !== undefined){
+                    toastr.success(response.message);
+                    $('#ishome-' + id).html(response.ishome.name);
+                    $('#ishome-' + id).attr('class', 'ishome btn btn-round ' + response.ishome.class);
+                }
+            }
+        })
     })
 })
