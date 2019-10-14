@@ -23,11 +23,13 @@ class CategoryController extends Controller
         $itemCategory = $categoryModel->getItem($params, ['task' => 'news-get-item']);
         if(empty($itemCategory)) return redirect()->route('home');
         $itemsLatest= $articleModel->listItems(null, ['task' => 'news-list-items-latest']);
+        $itemsMostViewed= $articleModel->listItems(null, ['task' => 'news-list-items-most-viewed']);
         $itemCategory['articles'] = $articleModel->listItems(['category_id' => $itemCategory['id']], ['task' => 'news-list-items-in-category']);
         return view($this->pathViewController . 'index', [
             'params' => $this->params,
             'itemsLatest' => $itemsLatest,
-            'itemCategory' => $itemCategory
+            'itemCategory' => $itemCategory,
+            'itemsMostViewed' => $itemsMostViewed,
         ]);
     }
 }

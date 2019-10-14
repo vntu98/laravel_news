@@ -1,44 +1,34 @@
+@php
+    use App\Helpers\Template;
+    use App\Helpers\URL;
+@endphp
 <div class="most_viewed">
     <div class="sidebar_title">Xem nhiều nhẩt</div>
     <div class="most_viewed_items">
         <!-- Most Viewed Item -->
-        <div class="most_viewed_item d-flex flex-row align-items-start justify-content-start">
-            <div>
-                <div class="most_viewed_num">01.</div>
-            </div>
-            <div class="most_viewed_content">
-                <div class="post_category_small cat_video"><a href="category.html">video</a>
+        @foreach($items as $key => $item)
+            @php
+                $index = ($key + 1) . '.';
+                $name = $item['name'];
+                $views = $item['views'];
+                $categoryName = App\Models\ArticleModel::find($item['id'])->category['name'];
+                $categoryId = App\Models\ArticleModel::find($item['id'])->category['id'];
+                $linkCategory = URL::linkCategory($categoryId, $categoryName);
+                $linkArticle = URL::linkArticle($item['id'], $name);
+                $created = Template::showDateTimeFrontend($item['created']);
+            @endphp
+            <div class="most_viewed_item d-flex flex-row align-items-start justify-content-start">
+                <div>
+                    <div class="most_viewed_num">{!!$index!!}</div>
                 </div>
-                <div class="most_viewed_title"><a href="single.html">New tech development</a>
+                <div class="most_viewed_content">
+                    <div class="post_category_small cat_video"><a href="{!!$linkCategory!!}">{!!$categoryName!!}</a>
+                    </div>
+                    <div class="most_viewed_title"><a href="{!!$linkArticle!!}">{!!$name!!}</a>
+                    </div>
+                    <div class="most_viewed_date"><a href="#">{!!$views!!} lượt xem</a></div>
                 </div>
-                <div class="most_viewed_date"><a href="#">March 12, 2018</a></div>
             </div>
-        </div>
-        <!-- Most Viewed Item -->
-        <div class="most_viewed_item d-flex flex-row align-items-start justify-content-start">
-            <div>
-                <div class="most_viewed_num">02.</div>
-            </div>
-            <div class="most_viewed_content">
-                <div class="post_category_small cat_world"><a href="category.html">world</a>
-                </div>
-                <div class="most_viewed_title"><a href="single.html">Robots are taking over</a>
-                </div>
-                <div class="most_viewed_date"><a href="#">March 12, 2018</a></div>
-            </div>
-        </div>
-        <!-- Most Viewed Item -->
-        <div class="most_viewed_item d-flex flex-row align-items-start justify-content-start">
-            <div>
-                <div class="most_viewed_num">03.</div>
-            </div>
-            <div class="most_viewed_content">
-                <div class="post_category_small cat_technology"><a href="category.html">tech</a>
-                </div>
-                <div class="most_viewed_title"><a href="single.html">10 tips to tech world</a>
-                </div>
-                <div class="most_viewed_date"><a href="#">March 12, 2018</a></div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>

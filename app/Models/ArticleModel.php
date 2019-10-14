@@ -56,6 +56,13 @@ class ArticleModel extends AdminModel
                     ->take(4);
             $result = $query->get()->toArray();
         }
+        if($options['task'] == 'news-list-items-most-viewed'){
+            $query = $this->select('id', 'name', 'content', 'status', 'thumb', 'type', 'views', 'created', 'created_by')
+                    ->where('status', 'active')
+                    ->orderBy('views', 'desc')
+                    ->take(3);
+            $result = $query->get()->toArray();
+        }
         if($options['task'] == 'news-list-items-in-category'){
             $query = $this->select('id', 'name', 'content', 'thumb', 'created', 'created_by')
                     ->where('status', 'active')
@@ -116,6 +123,10 @@ class ArticleModel extends AdminModel
             $type = ($params['currentType'] == "featured") ? "featured" : "normal";
             $this::where('id', $params["id"])->update(['type' => $type]);
         }
+        if($options['task'] == "news-access-view"){
+            $views = $this->getItem($params, ['task' => 'get-views-item'])['views'];
+            $this::where('id', $params["article_id"])->update(['views' => ($views + 1)]);
+        }
     }
     public function deleteItem($params = null, $options = null){
         if($options['task'] == "delete-item"){
@@ -128,6 +139,9 @@ class ArticleModel extends AdminModel
         $result = null;
         if($options['task'] == "get-item"){
             $result = self::select('id', 'category_id', 'name', 'content', 'status', 'thumb')->where('id', $params["id"])->first()->toArray();
+        }
+        if($options['task'] == "get-views-item"){
+            $result = self::select('views')->where('id', $params["article_id"])->first()->toArray();
         }
         if($options['task'] == "get-current-status"){
             $result = self::select('status')->where('id', $params["id"])->first()->toArray();

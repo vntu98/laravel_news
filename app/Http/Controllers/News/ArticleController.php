@@ -20,16 +20,18 @@ class ArticleController extends Controller
         $params['article_id'] = $request->article_id;
         $articleModel = new ArticleModel();
         $categoryModel = new CategoryModel();
+        $articleModel->saveItem($params, ['task' => 'news-access-view']);
         $itemArticle = $articleModel->getItem($params, ['task' => 'news-get-item']);
         if(empty($itemArticle)) return redirect()->route('home');
         $itemsLatest= $articleModel->listItems(null, ['task' => 'news-list-items-latest']);
+        $itemsMostViewed= $articleModel->listItems(null, ['task' => 'news-list-items-most-viewed']);
         $params['category_id'] = $articleModel::find($itemArticle['id'])->category['id'];
         $itemCategory = $categoryModel->getItem($params, ['task' => 'news-get-item']);
         $itemArticle['related_articles'] = $articleModel->listItems($params, ['task' => 'news-list-items-related-in-category']);
-        
         return view($this->pathViewController . 'index', [
             'params' => $this->params,
             'itemsLatest' => $itemsLatest,
+            'itemsMostViewed' => $itemsMostViewed,
             'itemArticle' => $itemArticle
         ]);
     }
