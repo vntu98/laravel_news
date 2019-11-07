@@ -19,7 +19,7 @@
                                 <!-- Extra -->
                                 @include('news.block.advertisement', ['itemsAdvertisement' => []])
                                 <!-- Most Viewed -->
-                                @include('news.block.most_viewed', ['itemsMostViewed' => []])
+                                @include('news.block.most_viewed', ['items' => $itemsMostViewed])
                                 <!-- Tags -->
                                 @include('news.block.tags', ['itemsTags' => []])
                             </div>
