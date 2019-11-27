@@ -1,6 +1,5 @@
 @extends('news.main', ['title' => 'Trang chủ'])
 @section('content')
-    @include('news.block.slider')
     <div class="content_container">
         <div class="container">
             <div class="row">
