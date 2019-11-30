@@ -67,6 +67,11 @@ $(document).ready(function() {
                                     $(this).data('index', $(this).data('index') - 1);
                                 }
                             })
+                            $('.index2').each(function(){
+                                if($(this).data('index') > index) {
+                                    $(this).data('index', $(this).data('index') - 1);
+                                }
+                            })
                             $('#div-' + id).remove();
                             swal("Xóa thành công!", {
                                 	icon: "success",

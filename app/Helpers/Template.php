@@ -49,7 +49,7 @@ class Template{
             $currentButton = $tmplButton[$btn];
             $link = route($controllerName . $currentButton['route-name'], $id);
             if($currentButton['icon'] == 'fa-trash') 
-                $xhtml .= sprintf('<a type="button" class="btn btn-icon %s" data-index="%s" data-id="%s" data-link="%s" data-toggle="tooltip" data-placement="top" data-original-title="%s">
+                $xhtml .= sprintf('<a type="button" class="index2 btn btn-icon %s" data-index="%s" data-id="%s" data-link="%s" data-toggle="tooltip" data-placement="top" data-original-title="%s">
                     <i class="fa %s"></i></a>', $currentButton['class'], $index, $id, $link, $currentButton['title'], $currentButton['icon']);
             else
                 $xhtml .= sprintf('<a href="%s" type="button" class="btn btn-icon %s" data-toggle="tooltip" data-placement="top" data-original-title="%s">
