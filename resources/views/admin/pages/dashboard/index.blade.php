@@ -2,14 +2,14 @@
 @section('content')
 <div class="page-header zvn-page-header clearfix">
     <div class="zvn-page-header-title">
-        <h3>Dashboard</h3>
+        <h3>{{ __('Dashboard') }}</h3>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Dashboard</h2>
+                <h2>{{ __('Dashboard') }}</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>

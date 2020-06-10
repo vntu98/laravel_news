@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 class UserModel extends AdminModel
 {
+    protected $fillable = [
+        'id', 'username', 'email', 'fullname', 'password', 'avatar', 'level', 'created', 'created_by', 'modified', 'modified_by', 'status'
+    ];
+
     public function __construct(){
         $this->table = 'user';
         $this->folderUpload = 'user';

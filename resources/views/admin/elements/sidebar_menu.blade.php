@@ -8,8 +8,7 @@
         <img src="{{ $src }}" alt="..." class="img-circle profile_img">
     </div>
     <div class="profile_info">
-        <span>Welcome,</span>
-        <h2>{{ session('userInfo')['fullname'] }}</h2>
+        <span>{!! __('Welcome, :name', ['name' => '<h2>' . session('userInfo')['fullname']]) . '</h2>' !!}</span>
     </div>
 </div>
 <!-- /menu profile quick info -->
@@ -17,13 +16,13 @@
 <!-- sidebar menu -->
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>General</h3>
+        <h3>{{ __('General') }}</h3>
         <ul class="nav side-menu">
-            <li><a href="{{route('dashboard')}}"><i class="fa fa-home"></i> Dashboard</a></li>
-            <li><a href="{{route('user')}}"><i class="fa fa-user"></i> User</a></li>
-            <li><a href="{{route('category')}}"><i class="fa fa fa-building-o"></i> Category</a></li>
-            <li><a href="{{route('article')}}"><i class="fa fa-newspaper-o"></i> Article</a></li>
-        <li><a href="{{route('slider')}}"><i class="fa fa-sliders"></i> Silders</a></li>
+            <li><a href="{{route('dashboard')}}"><i class="fa fa-home"></i> {{ __('Dashboard') }}</a></li>
+            <li><a href="{{route('user')}}"><i class="fa fa-user"></i> {{ __('User') }}</a></li>
+            <li><a href="{{route('category')}}"><i class="fa fa fa-building-o"></i> {{ __('Category') }}</a></li>
+            <li><a href="{{route('article')}}"><i class="fa fa-newspaper-o"></i> {{ __('Article') }}</a></li>
+        <li><a href="{{route('slider')}}"><i class="fa fa-sliders"></i> {{ __('Sliders') }}</a></li>
         </ul>
     </div>
 </div>

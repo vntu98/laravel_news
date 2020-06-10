@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Config;
 use App\Models\UserModel as MainModel;
 use App\Http\Requests\UserRequest as MainRequest;
+use App\Repositories\User\UserRepositoryInterface;
 
 class UserController extends Controller
 {
@@ -13,7 +14,12 @@ class UserController extends Controller
     private $controllerName = 'user';
     private $params = [];
     private $model;
-    public function __construct(){
+    private $userRepository;
+
+    public function __construct(
+        UserRepositoryInterface $userRepository
+    ){
+        $this->userRepository = $userRepository;
         $this->params['pagination']['totalItemsPerPage'] = 5;
         $this->model = new MainModel();
         view()->share('controllerName', $this->controllerName);
@@ -35,7 +41,8 @@ class UserController extends Controller
         $item = null;
         if($request->id !== null){
             $params['id'] = $request->id;
-            $item = $this->model->getItem($params, ['task' => 'get-item']);
+            // $item = $this->model->getItem($params, ['task' => 'get-item']);
+            $item = $this->userRepository->findById($params['id']);
         }
         return view($this->pathViewController . 'form', [
             'item' => $item
