@@ -31,5 +31,7 @@ class CategoryController extends Controller
             'itemCategory' => $itemCategory,
             'itemsMostViewed' => $itemsMostViewed,
         ]);
+
+        $itemCategory = $categoryModel::find( $params['category_id'])->load('articles')->toArray();
     }
 }

@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 class CategoryModel extends AdminModel
 {
+    protected $fillable = [
+        'id', 'name', 'status', 'created', 'created_by', 'modified', 'modified_by', 'is_home', 'display'
+    ];
     public function __construct(){
         $this->table = 'category';
         $this->folderUpload = 'category';
@@ -161,6 +164,6 @@ class CategoryModel extends AdminModel
     }
     public function articles()
     {
-        return $this->hasMany('App\Model\ArticleModel');
+        return $this->hasMany('App\Models\ArticleModel', 'category_id', 'id');
     }
 }

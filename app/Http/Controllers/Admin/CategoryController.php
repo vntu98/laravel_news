@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryModel as MainModel;
 use App\Http\Requests\CategoryRequest as MainRequest;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 use Config;
 
 class CategoryController extends Controller
@@ -13,7 +14,10 @@ class CategoryController extends Controller
     private $controllerName = 'category';
     private $params = [];
     private $model;
-    public function __construct(){
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository){
+        $this->categoryRepository = $categoryRepository;
         $this->params['pagination']['totalItemsPerPage'] = 10;
         $this->model = new MainModel();
         view()->share('controllerName', $this->controllerName);
@@ -44,7 +48,8 @@ class CategoryController extends Controller
         $item = null;
         if($request->id !== null){
             $params['id'] = $request->id;
-            $item = $this->model->getItem($params, ['task' => 'get-item']);
+            // $item = $this->model->getItem($params, ['task' => 'get-item']);
+            $item = $this->categoryRepository->find($params['id']);
         }
         return view($this->pathViewController . 'form', [
             'item' => $item
