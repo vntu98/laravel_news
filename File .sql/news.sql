@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2020 at 09:40 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.18
+-- Generation Time: Jul 16, 2020 at 04:27 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `prj_news`
+-- Database: `news`
 --
 
 -- --------------------------------------------------------
@@ -148,9 +148,9 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id`, `name`, `description`, `link`, `thumb`, `created`, `created_by`, `modified`, `modified_by`, `status`) VALUES
-(1, 'HLV Viettel tiến cử chuyên gia đá phạt cho thầy Park', 'Khóa học sẽ giúp bạn trở thành một chuyên gia Frontend với đầy đủ các kiến thức về HTML, CSS, JavaScript, Bootstrap, jQuery, chuyển PSD thành HTML ...HLV trưởng CLB Viettel Trương Việt Hoàng tin học trò Hồ Khắc Ngọc xứng đáng được triệu tập lên đội tuyển dự vòng loại World Cup 2022 và AFF Cup 2020.', 'https://vnexpress.net/hlv-viettel-tien-cu-chuyen-gia-da-phat-cho-thay-park-4114281.html', 'rEpDUQCxe4.jpeg', '2019-04-15 00:00:00', 'admin', '2019-04-24 13:28:03', 'admin', 'active'),
-(2, 'McManaman: \'Liverpool có thể mất Klopp về tay Bayern\'', 'Học trực tuyến giúp bạn tiết kiệm chi phí, thời gian, cập nhật được nhiều kiến thức mới nhanh nhất và hiệu quả nhấtCựu tiền vệ người Anh Steve McManaman cảnh báo nguy cơ Liverpool mất HLV Jurgen Klopp vào tay đại gia Đức Bayern Munich.', 'https://vnexpress.net/mcmanaman-liverpool-co-the-mat-klopp-ve-tay-bayern-4114276.html', 'K6B1O6UNCb.jpeg', '2019-04-18 00:00:00', 'admin', '2019-04-24 13:28:06', 'admin', 'active'),
-(3, 'Eto\'o xem Messi là \'Thần Bóng đá\'', 'Tổng hợp các trương trình ưu đãi học phí hàng tuần, hàng tháng đến tất các các bạn với các mức giảm đặc biệt 50%, 70%,..Đồng đội cũ Samuel Eto\'o dùng cách nói ví von về Lionel Messi trong cuộc trò chuyện với Xavi.', 'https://vnexpress.net/eto-o-xem-messi-la-than-bong-da-4114240.html', 'LWi6hINpXz.jpeg', '2019-04-24 00:00:00', 'admin', '2019-04-24 13:28:09', 'admin', 'inactive');
+(1, 'HLV Viettel tiến cử chuyên gia đá phạt cho thầy Park', 'HLV trưởng CLB Viettel Trương Việt Hoàng tin học trò Hồ Khắc Ngọc xứng đáng được triệu tập lên đội tuyển dự vòng loại World Cup 2022 và AFF Cup 2020.', 'https://vnexpress.net/hlv-viettel-tien-cu-chuyen-gia-da-phat-cho-thay-park-4114281.html', 'rEpDUQCxe4.jpeg', '2019-04-15 00:00:00', 'admin', '2019-04-24 13:28:03', 'admin', 'active'),
+(2, 'McManaman: \'Liverpool có thể mất Klopp về tay Bayern\'', 'Cựu tiền vệ người Anh Steve McManaman cảnh báo nguy cơ Liverpool mất HLV Jurgen Klopp vào tay đại gia Đức Bayern Munich.', 'https://vnexpress.net/mcmanaman-liverpool-co-the-mat-klopp-ve-tay-bayern-4114276.html', 'K6B1O6UNCb.jpeg', '2019-04-18 00:00:00', 'admin', '2019-04-24 13:28:06', 'admin', 'active'),
+(3, 'Eto\'o xem Messi là \'Thần Bóng đá\'', 'Đồng đội cũ Samuel Eto\'o dùng cách nói ví von về Lionel Messi trong cuộc trò chuyện với Xavi.', 'https://vnexpress.net/eto-o-xem-messi-la-than-bong-da-4114240.html', 'LWi6hINpXz.jpeg', '2019-04-24 00:00:00', 'admin', '2019-04-24 13:28:09', 'admin', 'inactive');
 
 -- --------------------------------------------------------
 
